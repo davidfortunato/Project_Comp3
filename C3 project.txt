@@ -1,0 +1,135 @@
+package PrisonProject;
+import java.util.Random
+import java.util.Scanner;
+import PrisonApp.prisoner;
+
+public class Prisioner{
+    String  name ;
+    String  crime;
+    int age;
+    String mood;
+    String  foodPreference;
+    String  jobPreference;
+    String  sportsPreference;
+    String  personality;
+    boolean alergies;
+    int sentenceTime;
+
+    public Prisioner(String name, String1 crime, int age, String11 personality, String mood, String foodPreference, boolean alergies, int sentenceTime, String sportsPreference){
+        this.name = name;
+        this.crime =crime;
+        this.age = age;
+        this.personality = personality;
+        this.mood = mood;
+        this.foodPreference = foodPreference;
+        this.alergies = alergies;
+        this.sentenceTime = sentenceTime;
+        this.sportsPreference = sportsPreference;
+    }
+
+}
+
+
+public class PrisonAPP {
+	String [] name = {"Steve","Bob","Nuno","David","Leonardo","Francisco","Michael","Anthony","Bernard","Andrew"};
+    String [] crime = {"Murder","Robbery","Rape","Embezzlement","Tax evasion","Drug trafficking","Human taffic"};;
+    String [] foodPreference = {"Vegetarien","Meat","Fish","Fast-Food"};
+    String [] jobPreference = {"Kitchen job","Cleaning","Painter","Construction","Laundry"};
+    String [] sportsPreference = {"Football", "Basketball","GYM"};
+    String [] personality = {"Bully","Entitled"};
+    String [] mood = {"Happy","Mad"};
+    
+public static void createPrisoner(String name){
+		
+    //decide random values to prisioner
+
+		prisoner prisoner1 = new prisoner();
+        prisoner1.name1 = "Steve";
+        prisoner1.crime = "Murder";
+        prisoner1.age1 = 35;
+        prisoner1.personality; //ir ver como escolher a personalidade de forma random
+        prisoner1.inteligence; //ir ver como escolher a personalidade de forma random
+         
+        prisoner prisoner2 = new prisoner();
+        prisoner2.name1 = "Bob";
+        
+        
+}
+public static void createPrisioners (){
+		Prisioner [] prisioners = {};
+        String [] copy_name = name;
+
+        //prisioners loop creation
+        for(int i =0 ; i< 10; i++ ){
+            Random rand = new Random();
+            int upper_bound = 9-i;
+            int int_random = rand.nexInt(upper_bound);
+            String namePrisioner = copy_name[int_random];
+
+            copy_name = removeTheElement(copy_name, int_random);
+
+            createPrisoner(namePrisioner);
+        }
+
+
+}
+
+//todo improve
+public static int[] removeTheElement(int[] arr, int index)
+    {
+ 
+        // If the array is empty
+        // or the index is not in array range
+        // return the original array
+        if (arr == null || index < 0
+            || index >= arr.length) {
+ 
+            return arr;
+        }
+ 
+        // Create another array of size one less
+        int[] anotherArray = new int[arr.length - 1];
+ 
+        // Copy the elements except the index
+        // from original array to the other array
+        for (int i = 0, k = 0; i < arr.length; i++) {
+ 
+            // if the index is
+            // the removal element index
+            if (i == index) {
+                continue;
+            }
+ 
+            // if the index is not
+            // the removal element index
+            anotherArray[k++] = arr[i];
+        }
+ 
+        // return the resultant array
+        return anotherArray;
+    }
+}
+
+public static void digitalClock () {
+	
+	
+}
+
+
+public static void userInteraction {
+	Scanner fr = new Scanner(System.in)
+	int prisonersWanted;
+	do {
+	do {
+	System.out.println("How many prisoners you want to join the game?");
+	prisonersWanted = fr.nextInt(); 
+	} while(prisonersWanted >10);
+	
+	//executa o programa
+	
+	}while()//até a simulação de 10 dias acabar...
+	
+	
+	
+	
+}
