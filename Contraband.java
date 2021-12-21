@@ -50,7 +50,24 @@ public class Contraband {
         switch (this.type) {
             case CIGARETTES:
                 this.severity = ContrabandSeverity.LIGHT;
-            // to do
+                break;
+            case CASH:
+                this.severity = ContrabandSeverity.LIGHT;
+                break;
+            case PHONES: 
+                this.severity = ContrabandSeverity.LIGHT;
+                break;
+            case DRUGS:
+                this.severity = ContrabandSeverity.MEDIUM;
+                break;
+            case KNIFES:
+                this.severity = ContrabandSeverity.MEDIUM;
+                break;
+            case GUNS:
+                this.severity = ContrabandSeverity.SEVERE;
+                break;
+
+
         }
     }
 }
