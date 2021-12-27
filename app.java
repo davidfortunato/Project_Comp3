@@ -1,42 +1,47 @@
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Random;
+import java.util.Scanner;
 
 public class app {
+    private static final int NUMBER_OF_DAYS = 10;
 
-    public static List<Space> setup() {
+    private static final int HOURS_PER_DAY = 7;
+
+    public static Prison setup() {
         Prison prison = new Prison();
 
-        Hallway hallway1 = new Hallway("h1");
-        Hallway hallway2 = new Hallway("h2");
-        Hallway hallway3 = new Hallway ("h3");
-        Hallway hallway4 = new Hallway ("h4");
-        Hallway hallway5 = new Hallway ("h5");
-        Hallway hallway6 = new Hallway ("h6");
+        Hallway hallway1 = new Hallway("h1", true, "Hallway1");
+        Hallway hallway2 = new Hallway("h2", true, "Hallway2");
+        Hallway hallway3 = new Hallway ("h3", true, "Hallway3");
+        Hallway hallway4 = new Hallway ("h4", true, "Hallway4");
+        Hallway hallway5 = new Hallway ("h5", true, "Hallway5");
+        Hallway hallway6 = new Hallway ("h6", true, "Hallway6");
 
-        Pathway pathway1 = new Pathway ("p1");
-        Pathway pathway2 = new Pathway ("p2");
-        Pathway pathway3 = new Pathway ("p3");
-        Pathway pathway4 = new Pathway ("p4");
-        Pathway pathway5 = new Pathway ("p5");
-        Pathway pathway6 = new Pathway ("p6");
-        Pathway pathway7 = new Pathway ("p7");
-        Pathway pathway8 = new Pathway ("p8");
+        Pathway pathway1 = new Pathway ("p1", true, "Pathway1");
+        Pathway pathway2 = new Pathway ("p2", true, "Pathway2");
+        Pathway pathway3 = new Pathway ("p3", true, "Pathway3");
+        Pathway pathway4 = new Pathway ("p4", true, "Pathway4");
+        Pathway pathway5 = new Pathway ("p5", true, "Pathway5");
+        Pathway pathway6 = new Pathway ("p6", true, "Pathway6");
+        Pathway pathway7 = new Pathway ("p7", true, "Pathway7");
+        Pathway pathway8 = new Pathway ("p8", true, "Pathway8");
 
-        Room cell_blockA = new Room ("CBA");
-        Room cell_blockB = new Room ("CBB");
-        Room cell_blockC = new Room ("CBC");
-        Room solitary = new Room ("SOL");
-        Room cafeteria = new Room ("CAF");
-        Room maintenanceArea = new Room ("MA");
-        Room recess = new Room ("REC");
-        Room basketball_court = new Room ("BC");
-        Room football_field = new Room ("FF");
-        Room showers = new Room ("SHO");
-        Room  kitchen = new Room ("KIT");
-        Room  laundry_room = new Room ("LR");
-        Room  infermary = new Room ("SOS");
-        Room  visitationArea = new Room ("VA");
+        Room cell_blockA = new Room ("CBA", true, "Cell Block A");
+        Room cell_blockB = new Room ("CBB", true, "Cell Block B");
+        Room cell_blockC = new Room ("CBC", true, "Cell Block C");
+        Room solitary = new Room ("SOL", true, "Solitary");
+        Room cafeteria = new Room ("CAF", true, "Cafeteria");
+        Room maintenanceArea = new Room ("MA", true, "Maintenance Area");
+        Room recess = new Room ("REC", true, "Recess");
+        Room basketball_court = new Room ("BC", true, "Basketball Court");
+        Room football_field = new Room ("FF", true, "Football Field");
+        Room showers = new Room ("SHO", true, "Showers");
+        Room  kitchen = new Room ("KIT", true, "Kitchen");
+        Room  laundry_room = new Room ("LR", true, "Laundry Room");
+        Room  infirmary = new Room ("SOS", true, "Infirmary");
+        Room  visitationArea = new Room ("VA", true, "Visitation Area");
 
         prison.addSpace(hallway1);
         prison.addSpace(hallway2);
@@ -66,11 +71,11 @@ public class app {
         prison.addSpace(basketball_court);
         prison.addSpace(kitchen);
         prison.addSpace(laundry_room);
-        prison.addSpace(infermary);
+        prison.addSpace(infirmary);
         prison.addSpace(visitationArea);
 
         //adjacents para o hallway 1
-        Adjacent a1 = new Adjacent(cell_blockA, 6);
+        Adjacent a1 = new Adjacent(cell_blockA, 5);
         Adjacent a2 = new Adjacent (cafeteria, 1);
         Adjacent a3 = new Adjacent (cell_blockB, 1);
 
@@ -98,12 +103,13 @@ public class app {
         Adjacent d4 = new Adjacent (recess, 1);
 
         hallway4.addAdjacentList(Arrays.asList(d1, d2, d3, d4));
+        hallway4.addAdjacentList(Arrays.asList(d1, d2, d3, d4));
 
         // adjacents in hallway5   
         Adjacent e1 = new Adjacent(maintenanceArea, 1);
         Adjacent e2 = new Adjacent (cell_blockB, 1);
         Adjacent e3 = new Adjacent (laundry_room, 1);
-        Adjacent e4 = new Adjacent (infermary, 1);
+        Adjacent e4 = new Adjacent (infirmary, 1);
 
         hallway5.addAdjacentList(Arrays.asList(e1, e2, e3, e4));
 
@@ -149,68 +155,132 @@ public class app {
 
         pathway4.addAdjacentList(Arrays.asList(i1, i2, i3));
 
-        // adjacents in pathway5
+        // // adjacents in pathway5
 
         Adjacent j1 = new Adjacent(recess, 1);
         Adjacent j2 = new Adjacent (showers, 1);
 
         pathway5.addAdjacentList(Arrays.asList(j1, j2));
 
-        // adjacents in pathway6
+        // // adjacents in pathway6
         Adjacent k1 = new Adjacent (recess, 1);
         Adjacent k2 = new Adjacent(cell_blockB, 1);
-        Adjacent k3 = new Adjacent (infermary, 1);
+        Adjacent k3 = new Adjacent (infirmary, 1);
 
         pathway6.addAdjacentList(Arrays.asList(k1, k2, k3));
 
-        // adjacents in pathway7
-        Adjacent m1 = new Adjacent (infermary, 1);
+        // // adjacents in pathway7
+        Adjacent m1 = new Adjacent (infirmary, 1);
         Adjacent m2 = new Adjacent(laundry_room, 1);
         Adjacent m3 = new Adjacent (basketball_court, 1);
     
-        pathway6.addAdjacentList(Arrays.asList(l1, l2, l3));
+        pathway7.addAdjacentList(Arrays.asList(m1, m2, m3));
            
         // adjacents in pathway8
         Adjacent n1 = new Adjacent (football_field, 1);
         Adjacent n2 = new Adjacent(basketball_court, 1);
     
-        pathway6.addAdjacentList(Arrays.asList(k1, k2));
+        pathway8.addAdjacentList(Arrays.asList(n1, n2));
 
         return prison;
+
     }
 
-    
+    // public static Prisioner setup2() {
 
-    public static List<Prisioner> setup2() {
+        //Prisioner prisioners = new 
 
-        Prisioner prisioner1 = new Prisioner ("Carlos", "Murder", 35, "agressive", "angry", "Asian", "painter", "basketball", false, 25, true);
-        Prisioner prisioner2 = new Prisioner ("João", "Theft", 21, "loner", "bully", "Asian", "painter", "basketball", false, 25, true);
-        Prisioner prisioner3 = new Prisioner ("David", "Money Laundring", 55, "push-over", "bully", "Asian", "painter", "basketball", false, 25, true);
-        Prisioner prisioner4 = new Prisioner ("André", "Blackmail", 42, "coward", "bully", "Asian", "painter", "basketball", false, 25, true);
-        Prisioner prisioner5 = new Prisioner ("Miguel", "Fraud", 48, "push-over", "bully", "Asian", "painter", "basketball", false, 25, true);
-        Prisioner prisioner6 = new Prisioner ("Francisco", "Rape", 33, "agressive", "bully", "Asian", "painter", "basketball", false, 25, true);
-        Prisioner prisioner7 = new Prisioner ("Bruno", "Assault", 25, "angry", "bully", "Asian", "painter", "basketball", false, 25, true);
-        Prisioner prisioner8 = new Prisioner ("Henrique", "Organized Crime", 65, "leader", "happy", "Asian", "painter", "basketball", false, 25, true);
-        Prisioner prisioner9 = new Prisioner ("António", "Drug Posession", 18, "paranoid", "bully", "Asian", "painter", "basketball", false, 25, true);
-        Prisioner prisioner10 = new Prisioner ("Pedro", "Disorderly Conduct", 20, "agressive", "bully", "Asian", "painter", "basketball", false, 25, true);
+    //     public Prisioner createPrisioner() {
+
+    //         List<ArrayList<String, String, int, String, String, String, String, String, boolean, int, Contraband, double, Space >> prisionerTraits = {{"Ralph", "Jeremy", "Adam", "Lawrence", "Bobby", "Joshua", "Scott", "Juan", "Peter", "Terry"}, {"Larceny", "Drug Possession", "Vandalism", "Fraud", "Property Crimes", "Assault", "Violent Crimes", "Weapon Charges"}, {23, 26, 29, 32, 34, 37, 41, 46, 51, 63},
+    //          {"The Entitled Personality", "The Bully Personality", "The Self-Righteous Personality", "The Sheep Personality"}, {"Lonely", "Mad", "High", "Infuriated", "Happy", "Sad"}, {"meat", "fish", "salad", "potatoes", "pasta", "rice", "fruit", "undifferentiated"}, {"Transcribe Textbooks", "Plant trees", "Cut Hair", "Clean Prison", "Workshop Work", "Cook", "Nursery Job"}}
+    //         for(i = 0; i<10; i++) {
+    //             for(List<ArrayList<String, String, int, String, String, String, String, String, boolean, int, Contraband, double, Space >> a: prisionerTraits) {
+
+    //             int randomIndexToSwap = randomTrait.nextInt(List<ArrayList<String, String, int, String, String, String, String, String, boolean, int, Contraband, double, Space >> a.length);
+	// 			String temp = a[randomIndexToSwap];
+	// 			a[randomIndexToSwap] = a[i];
+	// 			a[i] = temp;
+
+    //             }
+
+
+    //         }
+    //     } 
 
 
 
+    // }
 
-        return prisioners;
+    public static void printGetInputMessage() {
+        // TODO: adicionar resto das opcoes
+        System.out.println("Options\n0 - Next hour\n1 - Rob a prisioner");
     }
-
-    
-
     public static void main(String[] args) {
-        List<Space> prison = setup();
-        List <Prisioner> prisioners = setup2();
+        Prison caxias = setup();
 
-        System.out.println(prison);
+        Space initial = caxias.getSpace("CBA");
+        Space cbb = caxias.getSpace("CBB");
+        Space end = caxias.getSpace("h2");
+        Space forbiden = caxias.getSpace("p1");
+        Space infirmary = caxias.getSpace("SOS");
+        Space kitchen = caxias.getSpace("KIT");
+        Space basketball_court = caxias.getSpace("BC");
+        Space football_field = caxias.getSpace("FF");
+        Space maintenance_area = caxias.getSpace("MA");
 
-        // while(true) {
 
-        // }
+        Contraband c = new Contraband(true, ContrabandType.CASH);
+        Prisioner prisioner = new Prisioner("artur", "crime", 11, "personality", "mood", "foodPreference", kitchen, football_field, false, 12, c, 122.0, initial, (Room) initial);
+        Prisioner prisioner2 = new Prisioner("david", "crime", 11, "personality", "mood", "foodPreference", caxias.getSpace("MA"), caxias.getSpace("BC"), false, 12, c, 122.0, initial, (Room) initial);
+        prisioner.addNotAllowed(forbiden);
+        c.setPrisioner(prisioner);
+        caxias.addPrisioner(prisioner);
+        caxias.addPrisioner(prisioner2);
+        // List<Space> spp = Dijkstra.shortestPath(initial, end, caxias.getSpaces(), prisioner);    
+        // System.out.println("Prisioner");
+        // System.out.println(spp);
+
+        Guard guard = new Guard("name", 11, "personality", "mood", initial);
+
+        // List<Space> spg = Dijkstra.shortestPath(initial, end, caxias.getSpaces(), guard);    
+        // System.out.println("Guard");
+        // System.out.println(spg);
+
+        // prisioner.wrestle(prisioner2, (Room) cbb, caxias.getSpaces(), infirmary);
+
+        // prisioner.rob(prisioner2);
+
+        // guard.search(prisioner);
+        int day = 1;
+        int hour = 1;
+        Scanner input = new Scanner(System.in);  // Create a Scanner object
+        while(day <= NUMBER_OF_DAYS) {
+            while (hour <= HOURS_PER_DAY) {
+                System.out.println(String.format("Day: %d | Hour: %d\n", day, hour));
+                Game.scheduledTasks(caxias, hour);
+                int option = -1;
+                
+                // Varias acoes durante a mesma hora
+                while (option != 0) {
+                    printGetInputMessage();
+                    option = Integer.parseInt(input.nextLine());
+
+                    switch (option) {
+                        case 0:
+                            break;
+                        case 1:
+                            Game.robPrisioner(caxias, input);
+                            break;
+                    }
+                }
+
+                hour += 1;
+            }
+
+            day += 1;
+            hour = 1;
+        }
 
     }
 }

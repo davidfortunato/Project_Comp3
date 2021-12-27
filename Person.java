@@ -1,3 +1,6 @@
+import java.util.List;
+import java.util.Random;
+
 public abstract class Person {
     private String name;
     private int age;
@@ -51,4 +54,13 @@ public abstract class Person {
     public Space getLocation() {                      // allowing the classes to access the parameter//
         return this.location;
     }
+
+    protected boolean randomThreshold() {
+        Random rand = new Random();
+
+        return rand.nextFloat() > 0.5;
+    }
+    
+    public abstract boolean allowedToVisitSpace(Space s);
+    public abstract void walk(Space end, List<Space> prisionMap);
 }

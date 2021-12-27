@@ -6,9 +6,13 @@ public abstract class Space implements Searcheable {
 
     private ArrayList<Adjacent> adjacents = new ArrayList<Adjacent>();
     private String id;         //creating the attributes of the objects ( hallways, cell blocks, etc.)//
+    private boolean limAccess;
+    private String name;
 
-    public Space(String id) {
+    public Space(String id, boolean limAccess, String name) {
         this.id = id;
+        this.limAccess = limAccess;
+        this.name = name;
     }
 
     public void setId(String id) {
@@ -17,11 +21,14 @@ public abstract class Space implements Searcheable {
 
     public String getId() {                      // allowing the classes to access the ID//
         return this.id;
-
     }
-    
-    public Space (ArrayList<Adjacent> adjacents) {
-        this.adjacents=adjacents;
+
+    public void setlimAccess(boolean limAccess) {
+        this.limAccess = limAccess;
+    }
+
+    public boolean getLimAccess() {                      // allowing the classes to access the ID//
+        return this.limAccess;
     }
 
     private void addAdjacent( Adjacent adjacent, boolean circle) {
@@ -45,16 +52,21 @@ public abstract class Space implements Searcheable {
         return this.adjacents;
     }
 
-    public Space(String id, ArrayList <Adjacent> adjacents) {
-        this.id = id;
-        this.adjacents= adjacents;
+    public String getName() {
+        return this.name;
     }
     
     @Override
     public String toString() {
-        return "Space " + this.id + ": " + this.adjacents.size() + " adjacencies";
+        return this.name + "(" + this.id  + ")";
     }
 
+    @Override
+    public boolean equals(Object s) {
+        if (!(s instanceof Space)) return false;
+
+        return ((Space) s).getId() == this.id;
+    }
 }
 
 

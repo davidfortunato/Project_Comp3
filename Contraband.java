@@ -37,10 +37,9 @@ public class Contraband {
         return this.prisioner;
     }
 
-    public Contraband(boolean findOnInmate, ContrabandType type, Prisioner prisioner) {
+    public Contraband(boolean findOnInmate, ContrabandType type) {
         this.findOnInmate = findOnInmate;
         this.type = type;
-        this.prisioner = prisioner;
         this.typeToSeverity();        
 
         //make random functions to select different types of contraband
@@ -69,6 +68,11 @@ public class Contraband {
 
 
         }
+    }
+
+    @Override
+    public String toString() {
+        return String.format("Type %s | Prisioner %s", this.gettype(), this.getPrisioner().getName());
     }
 }
 

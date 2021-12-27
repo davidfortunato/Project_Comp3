@@ -1,7 +1,11 @@
 public class Hallway extends Space {
          
-    public Hallway(String id) {
-        super(id);                 // hallway constructor//
+    public Hallway(String id, boolean limAccess, String name) {
+        super(id, limAccess, name);                 // hallway constructor//
     }
 
+    @Override
+    public Contraband findContraband() {
+        return null;
+    }
 }
