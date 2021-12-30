@@ -4,10 +4,7 @@ public class Pathway extends Space {
         super(id, true, name);   
     }
 
-    @Override
-    public Contraband findContraband() {
-        return null;
-    }
+
 
 
 

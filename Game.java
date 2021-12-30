@@ -15,6 +15,17 @@ public class Game {
         robber.rob(robbed);
     }
 
+    public static void search (Prison prison, Scanner input) {
+        System.out.println("ACTION: ...");
+        System.out.print("Which guard (name) is searching? ");
+        String guardName = input.nextLine();
+        System.out.print("Which prisioner (name) is going to be searched? ");
+        String prisionerName = input.nextLine();
+        Prisioner prisioner = prison.getPrisioner(prisionerName);
+        Guard guard = prison.getGuard(guardName);
+        guard.search(prisioner);
+    }
+
     public static void wrestle(Prison prison, Scanner input) {
         System.out.println("ACTION: Prisioners wrestling");
         System.out.print("Which prisioner (name) is going to start the fight? ");

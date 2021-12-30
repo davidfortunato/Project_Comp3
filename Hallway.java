@@ -4,8 +4,5 @@ public class Hallway extends Space {
         super(id, limAccess, name);                 // hallway constructor//
     }
 
-    @Override
-    public Contraband findContraband() {
-        return null;
-    }
+
 }

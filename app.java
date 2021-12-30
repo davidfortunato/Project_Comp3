@@ -186,8 +186,19 @@ public class app {
 
     }
 
-     public static Prisioner setup2() {
-        Prisioner[] prisoners = new Prisioner[10];
+     public static void setupPrisioners(Prison prison) {
+        
+        Space kitchen = prison.getSpace("KIT");
+        Space maintenanceArea = prison.getSpace("MA");
+        Space infirmary = prison.getSpace("SOS");
+        Space laundry_room = prison.getSpace("LR");
+        Space recess = prison.getSpace("REC");
+        Space basketball_court = prison.getSpace("BC");
+        Space football_field = prison.getSpace("REC");
+        Room cellBlockA = (Room) prison.getSpace("CBA");
+
+
+        List <Prisioner> prisioners = new ArrayList<Prisioner>();
 		//names/
 			String[] names = {"Ralph", "Jeremy", "Adam", "Lawrence", "Bobby", "Joshua", "Scott", "Juan", "Peter", "Terry"};	
 		//ages/
@@ -199,17 +210,20 @@ public class app {
 		//crime/
 			String[] crimes = {"Larceny", "Drug Possession", "Vandalism", "Fraud", "Property Crimes", "Assault", "Violent Crimes", "Weapon Charges" };	
 		//Sentence Time/
-			int[] sentenceTime = {1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30};	
+			int[] sentenceTimes = {1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30};	
 		//foodpreference/
 			String[] foodPreferences = {"meat", "fish", "salad", "potatoes", "pasta", "rice", "fruit", "undifferentiated" };	
 		//jobpreference/
-			Space[] jobPreferences = {Space.kitchen, Space.maintenanceArea, Space.infirmary, Space.laundry_room};	
+			Space[] jobPreferences = {kitchen, maintenanceArea, infirmary, laundry_room};	
 		//SPORTS PREFERENCE/
-			Space[] sportsPreferences = {Space.recess, Space.basketball_court, Space.football_field}	
+			Space[] sportsPreferences = {recess, basketball_court, football_field};	
 		//contraband/
-			ContrabandType[] contrabands = {ContrabandType.CASH, ContrabandType.GUNS, ContrabandType.DRUGS, ContrabandType.CIGARETTES, ContrabandType.PHONES ,ContrabandType.KNIFES};	
+			ContrabandType[] contrabandTypes = {ContrabandType.CASH, ContrabandType.GUNS, ContrabandType.DRUGS, ContrabandType.CIGARETTES, ContrabandType.PHONES ,ContrabandType.KNIFES};
+            Contraband[] contrabands =	new Contraband[contrabandTypes.length];
 		//money balance/
 			Double[] moneyBalances = {100.0, 200.0, 300.0, 500.0, 1000.0, 2000.0, 5000.0, 0.0};	
+
+            Room [] cellBlocks = {cellBlockA};
 								
 		//shuffle function
 		for ( int a = 0; a < 10; a++) {
@@ -273,18 +287,18 @@ public class app {
 			
 			Random randomSentenceTime = new Random();
 		
-			for (int i = 0; i < sentenceTime.length; i++) {
-				int randomIndexToSwap = sentenceTime.length;
-				int temp = sentenceTime[randomIndexToSwap];
-				sentenceTime[randomIndexToSwap] = sentenceTime[i];
-				sentenceTime[i] = temp;
+			for (int i = 0; i < sentenceTimes.length; i++) {
+				int randomIndexToSwap = randomSentenceTime.nextInt(sentenceTimes.length);
+				int temp = sentenceTimes[randomIndexToSwap];
+				sentenceTimes[randomIndexToSwap] = sentenceTimes[i];
+				sentenceTimes[i] = temp;
 			}
 		
 		
 			
 			Random randomFoodPreferences = new Random();
 		
-			for (String randomFoodPreferences: foodPreferences) {
+			for (int i = 0; i<foodPreferences.length; i++) {
 				int randomIndexToSwap = randomFoodPreferences.nextInt(foodPreferences.length);
 				String temp = foodPreferences[randomIndexToSwap];
 				foodPreferences[randomIndexToSwap] = foodPreferences[i];
@@ -318,10 +332,10 @@ public class app {
 			Random randomContrabands = new Random();
 		
 			for (int i = 0; i < contrabands.length; i++) {
-				int randomIndexToSwap = randomContrabands.nextInt(contrabands.length);
-				ContrabandType temp = contrabands[randomIndexToSwap];
-				contrabands[randomIndexToSwap] = contrabands[i];
-				contrabands[i] = temp;
+				int randomIndexToSwap = randomContrabands.nextInt(contrabandTypes.length);
+				Contraband temp = new Contraband(true, contrabandTypes[randomIndexToSwap]);
+                //TODO acrescentar um prisioneiro
+                contrabands[i]=temp; 
 			}
 			
 			
@@ -335,13 +349,21 @@ public class app {
 				moneyBalances[i] = temp;
 			}
 			
+            Random randomCellBlocks = new Random();
+		
+			for (int i = 0; i < cellBlocks.length; i++) {
+				int randomIndexToSwap = randomCellBlocks.nextInt(cellBlocks.length);
+				Room temp = cellBlocks[randomIndexToSwap];
+				cellBlocks[randomIndexToSwap] = cellBlocks[i];
+				cellBlocks[i] = temp;
+			}
 	
 			
 		}
 		for(int i=0;i<10;i++){
 			Random rand = new Random(); 
 
-			String name= name[i];
+			String name = names[i];
 			String crime = crimes[rand.nextInt(crimes.length)];
 			int age = ages[rand.nextInt(ages.length)];
 			String personality = personalities[rand.nextInt(personalities.length)];
@@ -349,22 +371,26 @@ public class app {
 			String foodPreference = foodPreferences[rand.nextInt(foodPreferences.length)];
 			Space jobPreference = jobPreferences[rand.nextInt(jobPreferences.length)];
 			Space sportsPreference = sportsPreferences[rand.nextInt(sportsPreferences.length)];
-			int sentenceTime = sentenceTime[rand.nextInt(sentenceTime.length)];
+			int sentenceTime = sentenceTimes[rand.nextInt(sentenceTimes.length)];
 			Double moneyBalance = moneyBalances[rand.nextInt(moneyBalances.length)];
-			ContrabandType conntrabands = contrabands[rand.nextInt(contrabands.length)];		
+			Contraband contraband = contrabands[rand.nextInt(contrabands.length)];		
+			Room cellBlock = cellBlocks[rand.nextInt(cellBlocks.length)];		
 
-			Prisioner prisoner = new Prisioner(name,crime,age,personality,mood,foodPreference,jobPreference,sportsPreference,allergies,sentenceTime,contrabands,moneyBalance,space);
-			prisoners.push(prisioner);
+			Prisioner prisioner = new Prisioner(name,crime,age,personality,mood,foodPreference,jobPreference,sportsPreference,sentenceTime,contraband,moneyBalance, cellBlock);
+			prisioners.add(prisioner);
+            
 		
-	}
-     
-i	for(int i=0; i<10; i++){
-		System.out.println(prisoners[i].toString);
+	    }
+        prison.setPrisioners(prisioners);
+    }
 
-	}
+    public static void setupGuards(Prison prison) {
+        List <Guard> guards = new ArrayList<Guard>();
+        Room cellBlockA = (Room) prison.getSpace("CBA");
 
- 
-
+        Guard guard = new Guard("David", 18, "fixe", "sono", cellBlockA);
+        guards.add(guard);
+        prison.setGuards(guards);
 
     }
 
@@ -372,41 +398,12 @@ i	for(int i=0; i<10; i++){
         System.out.println("Options\n0 - Next hour\n1 - Rob a prisioner\n2 - Search a prisioner\n3 - Put 2 prisioners wrestling");
     }
     public static void main(String[] args) {
+        
         Prison caxias = setup();
+        setupPrisioners(caxias);
+        setupGuards(caxias);
 
-        Space initial = caxias.getSpace("CBA");
-        Space cbb = caxias.getSpace("CBB");
-        Space end = caxias.getSpace("h2");
-        Space forbiden = caxias.getSpace("p1");
-        Space infirmary = caxias.getSpace("SOS");
-        Space kitchen = caxias.getSpace("KIT");
-        Space basketball_court = caxias.getSpace("BC");
-        Space football_field = caxias.getSpace("FF");
-        Space maintenance_area = caxias.getSpace("MA");
-
-
-        Contraband c = new Contraband(true, ContrabandType.CASH);
-        Prisioner prisioner = new Prisioner("artur", "crime", 11, "personality", "mood", "foodPreference", kitchen, football_field, false, 12, c, 122.0, initial, (Room) initial);
-        Prisioner prisioner2 = new Prisioner("david", "crime", 11, "personality", "mood", "foodPreference", caxias.getSpace("MA"), caxias.getSpace("BC"), false, 12, c, 122.0, initial, (Room) initial);
-        prisioner.addNotAllowed(forbiden);
-        c.setOwner(prisioner);
-        caxias.addPrisioner(prisioner);
-        caxias.addPrisioner(prisioner2);
-        // List<Space> spp = Dijkstra.shortestPath(initial, end, caxias.getSpaces(), prisioner);    
-        // System.out.println("Prisioner");
-        // System.out.println(spp);
-
-        Guard guard = new Guard("name", 11, "personality", "mood", initial);
-
-        // List<Space> spg = Dijkstra.shortestPath(initial, end, caxias.getSpaces(), guard);    
-        // System.out.println("Guard");
-        // System.out.println(spg);
-
-        //prisioner.wrestle(prisioner2, (Room) cbb, caxias.getSpaces(), infirmary);
-
-        // prisioner.rob(prisioner2);
-
-        //guard.search(prisioner);
+   
         int day = 1;
         int hour = 1;
         Scanner input = new Scanner(System.in);  // Create a Scanner object
@@ -428,7 +425,7 @@ i	for(int i=0; i<10; i++){
                             Game.robPrisioner(caxias, input);
                             break;
                         case 2:
-                            guard.search(input, caxias);
+                            Game.search(caxias, input);
                             break;
                         case 3: 
                             Game.wrestle(caxias, input);

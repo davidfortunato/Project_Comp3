@@ -1,6 +1,5 @@
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Scanner;
 
 public class Guard extends Person { 
  
@@ -13,14 +12,12 @@ public class Guard extends Person {
         System.out.println(String.format("New guard %s: %s", this.getName(), this.isDirty ? "is dirty" : "is not dirty"));
     }
 
-    public Contraband search(Scanner input, Prison prison) {
+    public Contraband search(Prisioner prisioner) {
 
         System.out.println("ACTION: Robbing prisioner");
-        String searchedPrisioner = input.nextLine();
-        Prisioner searched = prison.getPrisioner(searchedPrisioner);
 
-        Contraband contraband = searched.findContraband();
-        System.out.println(String.format("Guard %s searched prisioner %s and found %s", this.getName(), searched.getName(), contraband.toString()));
+        Contraband contraband = prisioner.findContraband();
+        System.out.println(String.format("Guard %s searched prisioner %s and found %s", this.getName(), prisioner.getName(), contraband.toString()));
 
 
         if (contraband != null) {
@@ -29,7 +26,7 @@ public class Guard extends Person {
             }
 
             contraband.getOwner().setContraband(null);
-            this.increaseSentence(contraband.getSeverity(), contraband.getOwner());   //preciso de ajuda
+            this.increaseSentence(contraband.getSeverity(), contraband.getOwner());   
             contraband.setOwner(null);
         }
         return contraband;

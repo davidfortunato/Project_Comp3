@@ -1,7 +1,7 @@
 import java.util.ArrayList;
 import java.util.List;
 
-public class Prisioner extends Person implements Searcheable {
+public class Prisioner extends Person {
     private String  crime;
     private String  foodPreference;
     private Space  jobPreference;
@@ -16,13 +16,12 @@ public class Prisioner extends Person implements Searcheable {
     private final int WRESTLE_EXTRA_SENTENCE = 3;
     private final int ROB_EXTRA_SENTENCE = 2;
  
-    public Prisioner(String name, String crime, int age, String personality, String mood, String foodPreference, Space jobPreference, Space sportsPreference, boolean alergies, int sentenceTime, Contraband contraband, double moneyBalance, Space location, Room cellBlock ){
-        super(name, age, personality, mood, location);
+    public Prisioner(String name, String crime, int age, String personality, String mood, String foodPreference, Space jobPreference, Space sportsPreference, int sentenceTime, Contraband contraband, double moneyBalance, Room cellBlock ){
+        super(name, age, personality, mood, cellBlock);
         this.crime = crime;
         this.foodPreference = foodPreference;
         this.jobPreference = jobPreference;
         this.sportsPreference = sportsPreference;
-        this.alergies = alergies;
         this.sentenceTime = sentenceTime;
         this.moneyBalance = moneyBalance;
         this.contraband = contraband;

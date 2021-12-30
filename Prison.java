@@ -4,6 +4,8 @@ import java.util.List;
 public class Prison {
     private List<Space> spaces = new ArrayList<Space>();
     private List<Prisioner> prisioners = new ArrayList<Prisioner>();
+    private List<Guard> guards = new ArrayList<Guard>();
+
 
     public List<Space> getSpaces() {
         return this.spaces;
@@ -34,7 +36,13 @@ public class Prison {
     public void addPrisioner(Prisioner prisioner) {
         this.prisioners.add(prisioner);
     }
+    public void setPrisioners (List<Prisioner> prisioners) {
+        this.prisioners = prisioners;
+    }
 
+    public void setGuards (List<Guard> guards) {
+        this.guards = guards;
+    }
     public Room differentCellBlock (Room cellBlock) {
         for(Space a: this.spaces) {
             if (cellBlock.getName() != a.getName() && a.getId().startsWith("CB")) {
@@ -44,5 +52,12 @@ public class Prison {
         return null;
 
     } 
+    public Guard getGuard(String name) {
+        for (Guard g: this.guards) {
+            if (g.getName().equals(name)) return g;
+        }
+
+        return null;
+    }
 }
  

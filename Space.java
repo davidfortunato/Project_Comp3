@@ -2,7 +2,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-public abstract class Space implements Searcheable {
+public abstract class Space  {
 
     private ArrayList<Adjacent> adjacents = new ArrayList<Adjacent>();
     private String id;         //creating the attributes of the objects ( hallways, cell blocks, etc.)//
