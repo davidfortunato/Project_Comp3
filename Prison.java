@@ -35,5 +35,14 @@ public class Prison {
         this.prisioners.add(prisioner);
     }
 
+    public Room differentCellBlock (Room cellBlock) {
+        for(Space a: this.spaces) {
+            if (cellBlock.getName() != a.getName() && a.getId().startsWith("CB")) {
+                return (Room) a;
+            }
+        }
+        return null;
+
+    } 
 }
  

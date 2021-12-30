@@ -186,35 +186,190 @@ public class app {
 
     }
 
-    // public static Prisioner setup2() {
+     public static Prisioner setup2() {
+        Prisioner[] prisoners = new Prisioner[10];
+		//names/
+			String[] names = {"Ralph", "Jeremy", "Adam", "Lawrence", "Bobby", "Joshua", "Scott", "Juan", "Peter", "Terry"};	
+		//ages/
+			int[] ages = {23, 26, 29, 32, 34, 37, 41, 46, 51, 63};	
+		//personality/
+			String[] personalities = {"The Entitled Personality", "The Bully Personality", "The Self-Righteous Personality", "The Sheep Personality"};	
+		//mood/
+			String[] moods = {"Lonely", "Mad", "High", "Infuriated", "Happy", "Sad"};	
+		//crime/
+			String[] crimes = {"Larceny", "Drug Possession", "Vandalism", "Fraud", "Property Crimes", "Assault", "Violent Crimes", "Weapon Charges" };	
+		//Sentence Time/
+			int[] sentenceTime = {1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30};	
+		//foodpreference/
+			String[] foodPreferences = {"meat", "fish", "salad", "potatoes", "pasta", "rice", "fruit", "undifferentiated" };	
+		//jobpreference/
+			Space[] jobPreferences = {Space.kitchen, Space.maintenanceArea, Space.infirmary, Space.laundry_room};	
+		//SPORTS PREFERENCE/
+			Space[] sportsPreferences = {Space.recess, Space.basketball_court, Space.football_field}	
+		//contraband/
+			ContrabandType[] contrabands = {ContrabandType.CASH, ContrabandType.GUNS, ContrabandType.DRUGS, ContrabandType.CIGARETTES, ContrabandType.PHONES ,ContrabandType.KNIFES};	
+		//money balance/
+			Double[] moneyBalances = {100.0, 200.0, 300.0, 500.0, 1000.0, 2000.0, 5000.0, 0.0};	
+								
+		//shuffle function
+		for ( int a = 0; a < 10; a++) {
+		
+			
+			Random randomNames = new Random();
+		
+			for (int i = 0; i < names.length; i++) {
+				int randomIndexToSwap = randomNames.nextInt(names.length);
+				String temp = names[randomIndexToSwap];
+				names[randomIndexToSwap] = names[i];
+				names[i] = temp;
+			}
+		
+			//prisioners:array
+			//prisioners = [[name,ages...],[name,ages...]]
+			
+			
+			Random randomAges = new Random();
+		
+			for (int i = 0; i < ages.length; i++) {
+				int randomIndexToSwap = randomAges.nextInt(ages.length);
+				int temp = ages[randomIndexToSwap];
+				ages[randomIndexToSwap] = ages[i];
+				ages[i] = temp;
+			}
+		
+		
+			
+			Random randomPersonalities = new Random();
+		
+			for (int i = 0; i < personalities.length; i++) {
+				int randomIndexToSwap = randomPersonalities.nextInt(personalities.length);
+				String temp = personalities[randomIndexToSwap];
+				personalities[randomIndexToSwap] = personalities[i];
+				personalities[i] = temp;
+			}
+		
+		
+			
+			Random randomMood = new Random();
+		
+			for (int i = 0; i < moods.length; i++) {
+				int randomIndexToSwap = randomMood.nextInt(moods.length);
+				String temp = moods[randomIndexToSwap];
+				moods[randomIndexToSwap] = moods[i];
+				moods[i] = temp;
+			}
+		
+		
+			
+			Random randomCrimes = new Random();
+		
+			for (int i = 0; i < crimes.length; i++) {
+				int randomIndexToSwap = randomCrimes.nextInt(crimes.length);
+				String temp = crimes[randomIndexToSwap];
+				crimes[randomIndexToSwap] = crimes[i];
+				crimes[i] = temp;
+			}
+			
+			
+			Random randomSentenceTime = new Random();
+		
+			for (int i = 0; i < sentenceTime.length; i++) {
+				int randomIndexToSwap = sentenceTime.length;
+				int temp = sentenceTime[randomIndexToSwap];
+				sentenceTime[randomIndexToSwap] = sentenceTime[i];
+				sentenceTime[i] = temp;
+			}
+		
+		
+			
+			Random randomFoodPreferences = new Random();
+		
+			for (String randomFoodPreferences: foodPreferences) {
+				int randomIndexToSwap = randomFoodPreferences.nextInt(foodPreferences.length);
+				String temp = foodPreferences[randomIndexToSwap];
+				foodPreferences[randomIndexToSwap] = foodPreferences[i];
+				foodPreferences[i] = temp;
+			}
+		
+		
+			
+			Random randomJobPreferences = new Random();
+		
+			for (int i = 0; i < jobPreferences.length; i++) {
+				int randomIndexToSwap = randomJobPreferences.nextInt(jobPreferences.length);
+				Space temp = jobPreferences[randomIndexToSwap];
+				jobPreferences[randomIndexToSwap] = jobPreferences[i];
+				jobPreferences[i] = temp;
+			}
+			
+			
+			
+			Random randomSportsPreferences = new Random();
+		
+			for (int i = 0; i < sportsPreferences.length; i++) {
+				int randomIndexToSwap = randomSportsPreferences.nextInt(sportsPreferences.length);
+				Space temp = sportsPreferences[randomIndexToSwap];
+				sportsPreferences[randomIndexToSwap] = sportsPreferences[i];
+				sportsPreferences[i] = temp;
+			}	
+		
+			
+			
+			Random randomContrabands = new Random();
+		
+			for (int i = 0; i < contrabands.length; i++) {
+				int randomIndexToSwap = randomContrabands.nextInt(contrabands.length);
+				ContrabandType temp = contrabands[randomIndexToSwap];
+				contrabands[randomIndexToSwap] = contrabands[i];
+				contrabands[i] = temp;
+			}
+			
+			
+			
+			Random randomMoneyBalances = new Random();
+		
+			for (int i = 0; i < moneyBalances.length; i++) {
+				int randomIndexToSwap = randomMoneyBalances.nextInt(moneyBalances.length);
+				Double temp = moneyBalances[randomIndexToSwap];
+				moneyBalances[randomIndexToSwap] = moneyBalances[i];
+				moneyBalances[i] = temp;
+			}
+			
+	
+			
+		}
+		for(int i=0;i<10;i++){
+			Random rand = new Random(); 
 
-        //Prisioner prisioners = new 
+			String name= name[i];
+			String crime = crimes[rand.nextInt(crimes.length)];
+			int age = ages[rand.nextInt(ages.length)];
+			String personality = personalities[rand.nextInt(personalities.length)];
+			String mood = moods[rand.nextInt(moods.length)];
+			String foodPreference = foodPreferences[rand.nextInt(foodPreferences.length)];
+			Space jobPreference = jobPreferences[rand.nextInt(jobPreferences.length)];
+			Space sportsPreference = sportsPreferences[rand.nextInt(sportsPreferences.length)];
+			int sentenceTime = sentenceTime[rand.nextInt(sentenceTime.length)];
+			Double moneyBalance = moneyBalances[rand.nextInt(moneyBalances.length)];
+			ContrabandType conntrabands = contrabands[rand.nextInt(contrabands.length)];		
 
-    //     public Prisioner createPrisioner() {
+			Prisioner prisoner = new Prisioner(name,crime,age,personality,mood,foodPreference,jobPreference,sportsPreference,allergies,sentenceTime,contrabands,moneyBalance,space);
+			prisoners.push(prisioner);
+		
+	}
+     
+i	for(int i=0; i<10; i++){
+		System.out.println(prisoners[i].toString);
 
-    //         List<ArrayList<String, String, int, String, String, String, String, String, boolean, int, Contraband, double, Space >> prisionerTraits = {{"Ralph", "Jeremy", "Adam", "Lawrence", "Bobby", "Joshua", "Scott", "Juan", "Peter", "Terry"}, {"Larceny", "Drug Possession", "Vandalism", "Fraud", "Property Crimes", "Assault", "Violent Crimes", "Weapon Charges"}, {23, 26, 29, 32, 34, 37, 41, 46, 51, 63},
-    //          {"The Entitled Personality", "The Bully Personality", "The Self-Righteous Personality", "The Sheep Personality"}, {"Lonely", "Mad", "High", "Infuriated", "Happy", "Sad"}, {"meat", "fish", "salad", "potatoes", "pasta", "rice", "fruit", "undifferentiated"}, {"Transcribe Textbooks", "Plant trees", "Cut Hair", "Clean Prison", "Workshop Work", "Cook", "Nursery Job"}}
-    //         for(i = 0; i<10; i++) {
-    //             for(List<ArrayList<String, String, int, String, String, String, String, String, boolean, int, Contraband, double, Space >> a: prisionerTraits) {
+	}
 
-    //             int randomIndexToSwap = randomTrait.nextInt(List<ArrayList<String, String, int, String, String, String, String, String, boolean, int, Contraband, double, Space >> a.length);
-	// 			String temp = a[randomIndexToSwap];
-	// 			a[randomIndexToSwap] = a[i];
-	// 			a[i] = temp;
-
-    //             }
+ 
 
 
-    //         }
-    //     } 
-
-
-
-    // }
+    }
 
     public static void printGetInputMessage() {
-        // TODO: adicionar resto das opcoes
-        System.out.println("Options\n0 - Next hour\n1 - Rob a prisioner");
+        System.out.println("Options\n0 - Next hour\n1 - Rob a prisioner\n2 - Search a prisioner\n3 - Put 2 prisioners wrestling");
     }
     public static void main(String[] args) {
         Prison caxias = setup();
@@ -234,7 +389,7 @@ public class app {
         Prisioner prisioner = new Prisioner("artur", "crime", 11, "personality", "mood", "foodPreference", kitchen, football_field, false, 12, c, 122.0, initial, (Room) initial);
         Prisioner prisioner2 = new Prisioner("david", "crime", 11, "personality", "mood", "foodPreference", caxias.getSpace("MA"), caxias.getSpace("BC"), false, 12, c, 122.0, initial, (Room) initial);
         prisioner.addNotAllowed(forbiden);
-        c.setPrisioner(prisioner);
+        c.setOwner(prisioner);
         caxias.addPrisioner(prisioner);
         caxias.addPrisioner(prisioner2);
         // List<Space> spp = Dijkstra.shortestPath(initial, end, caxias.getSpaces(), prisioner);    
@@ -247,11 +402,11 @@ public class app {
         // System.out.println("Guard");
         // System.out.println(spg);
 
-        // prisioner.wrestle(prisioner2, (Room) cbb, caxias.getSpaces(), infirmary);
+        //prisioner.wrestle(prisioner2, (Room) cbb, caxias.getSpaces(), infirmary);
 
         // prisioner.rob(prisioner2);
 
-        // guard.search(prisioner);
+        //guard.search(prisioner);
         int day = 1;
         int hour = 1;
         Scanner input = new Scanner(System.in);  // Create a Scanner object
@@ -265,12 +420,18 @@ public class app {
                 while (option != 0) {
                     printGetInputMessage();
                     option = Integer.parseInt(input.nextLine());
-
+                    
                     switch (option) {
                         case 0:
                             break;
                         case 1:
                             Game.robPrisioner(caxias, input);
+                            break;
+                        case 2:
+                            guard.search(input, caxias);
+                            break;
+                        case 3: 
+                            Game.wrestle(caxias, input);
                             break;
                     }
                 }

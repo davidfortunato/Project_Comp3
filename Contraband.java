@@ -3,7 +3,7 @@ public class Contraband {
     private boolean findOnInmate;
     private ContrabandSeverity severity;
     private ContrabandType type;
-    private Prisioner prisioner;
+    private Person owner;
   
     public void setfindOnInmate(boolean findOnInmate) {
         this.findOnInmate = findOnInmate;
@@ -29,12 +29,12 @@ public class Contraband {
         return this.type;
     }
 
-    public void setPrisioner(Prisioner prisioner) {
-        this.prisioner = prisioner;
+    public void setOwner(Person owner) {
+        this.owner = owner;
     }
 
-    public Prisioner getPrisioner() {
-        return this.prisioner;
+    public Person getOwner() {
+        return this.owner;
     }
 
     public Contraband(boolean findOnInmate, ContrabandType type) {
@@ -72,7 +72,7 @@ public class Contraband {
 
     @Override
     public String toString() {
-        return String.format("Type %s | Prisioner %s", this.gettype(), this.getPrisioner().getName());
+        return String.format("Type %s | Owner %s", this.gettype(), this.getOwner().getName());
     }
 }
 

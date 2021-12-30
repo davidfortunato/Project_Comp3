@@ -1,5 +1,6 @@
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 
 public class Guard extends Person { 
  
@@ -12,16 +13,24 @@ public class Guard extends Person {
         System.out.println(String.format("New guard %s: %s", this.getName(), this.isDirty ? "is dirty" : "is not dirty"));
     }
 
-    public Contraband search(Searcheable s) {
-        Contraband contraband = s.findContraband();
+    public Contraband search(Scanner input, Prison prison) {
+
+        System.out.println("ACTION: Robbing prisioner");
+        String searchedPrisioner = input.nextLine();
+        Prisioner searched = prison.getPrisioner(searchedPrisioner);
+
+        Contraband contraband = searched.findContraband();
+        System.out.println(String.format("Guard %s searched prisioner %s and found %s", this.getName(), searched.getName(), contraband.toString()));
+
 
         if (contraband != null) {
             if (this.isDirty) {
                 this.stealContraband(contraband);
             }
 
-            contraband.getPrisioner().setContraband(null);
-            increaseSentence(contraband.getSeverity(), contraband.getPrisioner());
+            contraband.getOwner().setContraband(null);
+            this.increaseSentence(contraband.getSeverity(), contraband.getOwner());   //preciso de ajuda
+            contraband.setOwner(null);
         }
         return contraband;
     }
@@ -31,7 +40,7 @@ public class Guard extends Person {
         System.out.println(String.format("Dirty guard %s: stole %s", this.getName(), contraband.toString()));
     }
 
-    public void increaseSentence(ContrabandSeverity severity, Prisioner prisioner) {
+    public void increaseSentence(ContrabandSeverity severity, Person owner) {
         int extraSentence = 0;
 
         switch (severity) {
@@ -45,9 +54,10 @@ public class Guard extends Person {
                 extraSentence = 3;
                 break;
         }
+        if(! (owner instanceof Guard)) return;
 
-        prisioner.setSentenceTime(extraSentence);
-        System.out.println(String.format("Guard %s increased prisioner %s sentence by %d years", this.toString(), prisioner.getName(), extraSentence));
+        ((Prisioner) owner).setSentenceTime(extraSentence);
+        System.out.println(String.format("Guard %s increased prisioner %s sentence by %d years", this.toString(), owner.getName(), extraSentence));
     }
 
     @Override

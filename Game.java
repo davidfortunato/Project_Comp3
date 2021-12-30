@@ -15,6 +15,19 @@ public class Game {
         robber.rob(robbed);
     }
 
+    public static void wrestle(Prison prison, Scanner input) {
+        System.out.println("ACTION: Prisioners wrestling");
+        System.out.print("Which prisioner (name) is going to start the fight? ");
+        String starterName = input.nextLine();
+        Prisioner starter = prison.getPrisioner(starterName);
+        System.out.print("Which prisioner (name) is going to be punched? ");
+        String punchedName = input.nextLine();
+        Prisioner punched = prison.getPrisioner(punchedName);
+        Space infirmary = prison.getSpace("SOS");
+        Room finalCellBlock =prison.differentCellBlock(starter.getCellBlock());
+        starter.wrestle(punched, finalCellBlock, prison.getSpaces(), infirmary);
+    }
+
     public static void scheduledTasks(Prison prison, int hour) {
         List<Prisioner> prisioners = new ArrayList<Prisioner>();
         Space showers = prison.getSpace("SHO");
@@ -36,8 +49,8 @@ public class Game {
             case 3:
             for (Prisioner p: prisioners){
                 p.walk(p.getjobPreference(), prisionMap);
+                System.out.println("Prisioner %s worked in %s. Do you wish to do anything else before moving to the next hour?");
             }
-            System.out.println("Prisioner %s worked in %s and Prisioner %s worked in %s. Do you wish to do anything else before moving to the next hour?", );
                 break;
             case 4:
             for (Prisioner p: prisioners ){

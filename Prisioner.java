@@ -11,7 +11,7 @@ public class Prisioner extends Person implements Searcheable {
     private double moneyBalance;
     private Contraband contraband;
     private List<Space> notAllowed = new ArrayList<Space>();
-    private Space cellBlock;
+    private Room cellBlock;
 
     private final int WRESTLE_EXTRA_SENTENCE = 3;
     private final int ROB_EXTRA_SENTENCE = 2;
@@ -91,15 +91,6 @@ public class Prisioner extends Person implements Searcheable {
         this.setMoneyBalance(this.moneyBalance + balanceToAdd);
     }
 
-    public void setContraband(Contraband contraband) {
-        this.contraband = contraband;
-        System.out.println(String.format("Prisioner %s: contraband is now %s", this.getName(), this.contraband == null ? "empty" : contraband.toString()));
-    }
-
-    public Contraband getContraband() {
-        return this.contraband;
-    }
-
     public void setMoneyBalance(Double moneyBalance) {
         this.moneyBalance = moneyBalance;
         System.out.println(String.format("Prisioner %s: new money balance is %f", this.getName(), this.getMoneyBalance()));
@@ -113,7 +104,7 @@ public class Prisioner extends Person implements Searcheable {
         return this.contraband;
     }
 
-    public Space getCellBlock() {
+    public Room getCellBlock() {
         return this.cellBlock;
     }
 

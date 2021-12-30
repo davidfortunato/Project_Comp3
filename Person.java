@@ -7,6 +7,7 @@ public abstract class Person {
     private String mood;
     private String personality;
     private Space location;
+    private Contraband contraband;
 
     public Person (String name, int age, String mood, String personality, Space location) {
         this.name = name;
@@ -60,6 +61,16 @@ public abstract class Person {
 
         return rand.nextFloat() > 0.5;
     }
+
+    public void setContraband(Contraband contraband) {
+        this.contraband = contraband;
+        System.out.println(String.format("Person %s: contraband is now %s", this.getName(), this.contraband == null ? "empty" : contraband.toString()));
+    }
+
+    public Contraband getContraband() {
+        return this.contraband;
+    }
+
     
     public abstract boolean allowedToVisitSpace(Space s);
     public abstract void walk(Space end, List<Space> prisionMap);
