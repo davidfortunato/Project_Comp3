@@ -66,4 +66,9 @@ public class Guard extends Person {
     public void walk(Space end, List<Space> prisionMap) {
        return;
     }
+
+    @Override
+    public String toString() {
+        return "GUARD: "+ this.getName() + "(" + this.getLocation()  + ")";
+    }
 }

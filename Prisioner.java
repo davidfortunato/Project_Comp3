@@ -162,5 +162,10 @@ public class Prisioner extends Person {
     public boolean allowedToVisitSpace(Space s) {
         return !this.notAllowed.contains(s);
     }
+
+    @Override
+    public String toString() {
+        return "PRISIONER: "+ this.getName() + "(" + this.getLocation()  + ")";
+    }
 }
 

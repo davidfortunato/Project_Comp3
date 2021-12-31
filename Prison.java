@@ -43,6 +43,14 @@ public class Prison {
     public void setGuards (List<Guard> guards) {
         this.guards = guards;
     }
+    public List <Prisioner> getPrisioners() {
+        return this.prisioners;
+    }
+
+    public List <Guard> getGuards() {
+        return this.guards;
+    }
+
     public Room differentCellBlock (Room cellBlock) {
         for(Space a: this.spaces) {
             if (cellBlock.getName() != a.getName() && a.getId().startsWith("CB")) {

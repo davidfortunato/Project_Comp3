@@ -219,7 +219,7 @@ public class app {
 			Space[] sportsPreferences = {recess, basketball_court, football_field};	
 		//contraband/
 			ContrabandType[] contrabandTypes = {ContrabandType.CASH, ContrabandType.GUNS, ContrabandType.DRUGS, ContrabandType.CIGARETTES, ContrabandType.PHONES ,ContrabandType.KNIFES};
-            Contraband[] contrabands =	new Contraband[contrabandTypes.length];
+            List <Contraband> contrabands =	new ArrayList<Contraband>();
 		//money balance/
 			Double[] moneyBalances = {100.0, 200.0, 300.0, 500.0, 1000.0, 2000.0, 5000.0, 0.0};	
 
@@ -331,11 +331,10 @@ public class app {
 			
 			Random randomContrabands = new Random();
 		
-			for (int i = 0; i < contrabands.length; i++) {
+			for (int i = 0; i < contrabandTypes.length; i++) {
 				int randomIndexToSwap = randomContrabands.nextInt(contrabandTypes.length);
 				Contraband temp = new Contraband(true, contrabandTypes[randomIndexToSwap]);
-                //TODO acrescentar um prisioneiro
-                contrabands[i]=temp; 
+                contrabands.add(temp); 
 			}
 			
 			
@@ -373,13 +372,15 @@ public class app {
 			Space sportsPreference = sportsPreferences[rand.nextInt(sportsPreferences.length)];
 			int sentenceTime = sentenceTimes[rand.nextInt(sentenceTimes.length)];
 			Double moneyBalance = moneyBalances[rand.nextInt(moneyBalances.length)];
-			Contraband contraband = contrabands[rand.nextInt(contrabands.length)];		
+            int index = rand.nextInt(contrabands.size());
+			Contraband contraband = contrabands.get(index);		
 			Room cellBlock = cellBlocks[rand.nextInt(cellBlocks.length)];		
+
+            contrabands.remove(index);
 
 			Prisioner prisioner = new Prisioner(name,crime,age,personality,mood,foodPreference,jobPreference,sportsPreference,sentenceTime,contraband,moneyBalance, cellBlock);
 			prisioners.add(prisioner);
-            
-		
+            contraband.setOwner(prisioner); 
 	    }
         prison.setPrisioners(prisioners);
     }
@@ -395,7 +396,7 @@ public class app {
     }
 
     public static void printGetInputMessage() {
-        System.out.println("Options\n0 - Next hour\n1 - Rob a prisioner\n2 - Search a prisioner\n3 - Put 2 prisioners wrestling");
+        System.out.println("Options\n0 - Next hour\n1 - Rob a prisioner\n2 - Search a prisioner\n3 - Put 2 prisioners wrestling\n4 - Print game status");
     }
     public static void main(String[] args) {
         
@@ -430,6 +431,8 @@ public class app {
                         case 3: 
                             Game.wrestle(caxias, input);
                             break;
+                        case 4:
+                            Game.printGame(caxias);    
                     }
                 }
 

@@ -17,26 +17,53 @@ public class Game {
 
     public static void search (Prison prison, Scanner input) {
         System.out.println("ACTION: ...");
-        System.out.print("Which guard (name) is searching? ");
-        String guardName = input.nextLine();
-        System.out.print("Which prisioner (name) is going to be searched? ");
-        String prisionerName = input.nextLine();
-        Prisioner prisioner = prison.getPrisioner(prisionerName);
-        Guard guard = prison.getGuard(guardName);
+        Guard guard = null;
+        while (guard == null) {
+            System.out.print("Which guard (name) is searching? ");
+            String guardName = input.nextLine();
+            guard = prison.getGuard(guardName);
+        }
+        Prisioner prisioner = null;
+        while (prisioner == null) {
+            System.out.print("Which prisioner (name) is going to be searched? ");
+            String prisionerName = input.nextLine();
+            prisioner = prison.getPrisioner(prisionerName);
+        }
         guard.search(prisioner);
     }
 
     public static void wrestle(Prison prison, Scanner input) {
         System.out.println("ACTION: Prisioners wrestling");
-        System.out.print("Which prisioner (name) is going to start the fight? ");
-        String starterName = input.nextLine();
-        Prisioner starter = prison.getPrisioner(starterName);
+        Prisioner starter = null;
+        while (starter == null) { 
+            System.out.print("Which prisioner (name) is going to start the fight? ");
+            String starterName = input.nextLine();
+            starter = prison.getPrisioner(starterName);
+        }   
         System.out.print("Which prisioner (name) is going to be punched? ");
         String punchedName = input.nextLine();
         Prisioner punched = prison.getPrisioner(punchedName);
         Space infirmary = prison.getSpace("SOS");
         Room finalCellBlock =prison.differentCellBlock(starter.getCellBlock());
         starter.wrestle(punched, finalCellBlock, prison.getSpaces(), infirmary);
+    }
+
+    public static void printGame (Prison prison) {
+
+        System.out.println("Spaces:");
+        for(Space space: prison.getSpaces()) {
+            System.out.println(space);
+        }
+
+        System.out.println("Prisioners:");
+        for(Prisioner prisioner: prison.getPrisioners()) {
+            System.out.println(prisioner);
+ } 
+ 
+        System.out.println("Guards:");
+        for(Guard guard: prison.getGuards()) {
+            System.out.println(guard);
+        }
     }
 
     public static void scheduledTasks(Prison prison, int hour) {
