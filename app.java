@@ -196,7 +196,8 @@ public class app {
         Space basketball_court = prison.getSpace("BC");
         Space football_field = prison.getSpace("REC");
         Room cellBlockA = (Room) prison.getSpace("CBA");
-
+        Room cellBlockB = (Room) prison.getSpace("CBB");
+        Room cellBlockC = (Room) prison.getSpace("CBC");
 
         List <Prisioner> prisioners = new ArrayList<Prisioner>();
 		//names/
@@ -223,7 +224,7 @@ public class app {
 		//money balance/
 			Double[] moneyBalances = {100.0, 200.0, 300.0, 500.0, 1000.0, 2000.0, 5000.0, 0.0};	
 
-            Room [] cellBlocks = {cellBlockA};
+            Room [] cellBlocks = {cellBlockA, cellBlockB, cellBlockC};
 								
 		//shuffle function
 		for ( int a = 0; a < 10; a++) {
@@ -388,9 +389,21 @@ public class app {
     public static void setupGuards(Prison prison) {
         List <Guard> guards = new ArrayList<Guard>();
         Room cellBlockA = (Room) prison.getSpace("CBA");
+        Room cellBlockB = (Room) prison.getSpace("CBB");
+        Room cellBlockC = (Room) prison.getSpace("CBC");
 
-        Guard guard = new Guard("David", 18, "fixe", "sono", cellBlockA);
-        guards.add(guard);
+        Guard guard1 = new Guard("David", 18, "The Entitled Personality", "Sad", cellBlockA);
+        Guard guard2 = new Guard("Joao", 50, "The Bully Personality", "Mad", cellBlockA);
+        Guard guard3 = new Guard("Francisco", 30, "The Self-Righteous Personality", "High", cellBlockB);
+        Guard guard4 = new Guard("Afonso", 40, "The Sheep Personality", "Happy", cellBlockB);
+        Guard guard5 = new Guard("Tomas", 25, "The Bully Personality", "Lonely", cellBlockC);
+        Guard guard6 = new Guard("Andre", 36, "The Sheep Personality", "Infuriated", cellBlockC);
+        guards.add(guard1);
+        guards.add(guard2);
+        guards.add(guard3);
+        guards.add(guard4);
+        guards.add(guard5);
+        guards.add(guard6);
         prison.setGuards(guards);
 
     }
@@ -407,7 +420,7 @@ public class app {
    
         int day = 1;
         int hour = 1;
-        Scanner input = new Scanner(System.in);  // Create a Scanner object
+        Scanner input = new Scanner(System.in);  
         while(day <= NUMBER_OF_DAYS) {
             while (hour <= HOURS_PER_DAY) {
                 System.out.println(String.format("Day: %d | Hour: %d\n", day, hour));
